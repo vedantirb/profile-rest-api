@@ -10,11 +10,12 @@ class UserProfileManager(BaseUserManager):
         """ Create a new user profile """
         if not email:
             raise ValueError("User must have email address")
-            email = self.normalize_email(email)
-            user = self.model(email=email, name=name)
-            user.set_password(password)
-            user.save(using=self._db)
-            return user
+        email = self.normalize_email(email)
+        user = self.model(email=email, name=name)
+        user.set_password(password)
+        user.save(using=self._db)
+        print("User is:", user)
+        return user
 
     def create_superuser(self, email, name, password):
         """ Create and save a new superuser with given details """
